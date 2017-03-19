@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/AutomationTaskSelenium" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Groovy" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/InstagramDownloader/InstagramUpgrade" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Instagran_Tests" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/JavaCoursesOOP" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/JenkinsTest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Provider" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Provider/Provider" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SIgnInPageTest/SignInTest" vcs="Git" />
+  </component>
+</project>
