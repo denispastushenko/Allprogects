@@ -1,0 +1,7 @@
+List <WebElement> webEl = webDriver.findElements(By.xpath("//a[@href ='/watch?v=WHZPEkZCqwA']"));
+        List<String> elemList = new ArrayList<String>();
+        for(WebElement web : webEl) {
+            elemList.add(web.getAttribute("href"));
+        }
+        System.out.println(elemList);
+        webDriver.get(elemList.get(0));

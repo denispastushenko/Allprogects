@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Calculator</title>
+        <script >
+            
+var sign;
+var srcValue;
+
+
+function press(domElement){
+     
+     var value =  document.getElementById("calc").value;
+     if(document.getElementById("calc").value.length < 15){
+     value = value.concat(domElement.value);
+     document.getElementById("calc").value =value;
+       
+    }
+};
+
+function clearEntry(){
+    document.getElementById("calc").value="";
+};
+
+function setSign(domElement){
+   sign = domElement.value;
+    srcValue=document.getElementById("calc").value;
+   clearEntry();
+};
+
+
+function sqrt(){
+     var value1 = document.getElementById("calc").value;
+     document.getElementById("calc").value = Math.sqrt(value1);
+};
+
+function result(){
+     if(sign==="√"){ sqrt();}
+     else if (sign!=="√"){ var destValue = document.getElementById("calc").value;
+     document.getElementById("calc").value = eval(`${srcValue}${sign}${destValue}`);
+                         resultBorder(document.getElementById("calc").value);}
+};
+
+function setSqrt(domElement){
+    sign = domElement.value;
+    srcValue=document.getElementById("calc").value;
+   
+};
+
+
+function changeSign(domElement){
+    var atribute = document.getElementById("calc").value;
+    if(atribute>0){  atribute =(domElement.id).concat(atribute);
+       document.getElementById("calc").value = atribute;
+    }else if(atribute<0){     atribute = atribute.replace("-","");
+      document.getElementById("calc").value=atribute;  
+    } 
+};
+
+function undisableBtnPoint() {
+    document.getElementById("11").disabled = false;
+};
+
+function disableBtnPoint() {
+    document.getElementById("11").disabled = true;
+};
+
+function point1(domElement){
+            var dec = document.getElementById("calc").value;
+    var reg =/[.]{1}[0-9]{1,}[.]{1}/g;
+          if(dec==="."){
+        document.getElementById("calc").value = dec.replace(".","");
+           undisableBtnPoint();
+          }else if(dec.match(reg)){
+               document.getElementById("calc").value=dec.replace(/[.]$/,"");
+              }
+              else {
+                  disableBtnPoint();
+              }
+          
+    };
+
+ function zero(domElement){
+     var zer = document.getElementById("calc").value;
+     var regular = /[0][1-9]/m;
+     var regularZero = /[0]/m;
+       
+     if (zer.match(/[1-9]{1}[0]{1,}/)){
+        document.getElementById("calc").value = zer;
+    }else if (zer.match(regular)){
+       document.getElementById("calc").value = zer.substr(1,zer.length); }
+     else if(zer.match(/[0]{1,}[1-9]{0}/)){
+        document.getElementById("calc").value = zer.replace(/[0]{1,}/,"0");}
+};
+
+
+
+
+ function exp(){
+      var exp1 = document.getElementById("calc").value;
+     document.getElementById("calc").value= Math.exp(exp1);
+     resultBorder();
+     if (exp1==="Infinity"){
+          alert('Can not count Infinity exp! Push button "OK" ,after push "C" and try again.');
+     }
+ }
+
+ function log(){
+      var log1 = document.getElementById("calc").value;
+     document.getElementById("calc").value= Math.log(log1);
+     resultBorder();
+     if (log1<0){
+          alert('Can not count log because digit < 0! Push button "OK" ,after push "C" and try again.');
+     }
+ }
+
+function resultBorder(){
+    var  bor = document.getElementById("calc").value;
+    document.getElementById("calc").value = bor.substring(0,15);
+    document.getElementById("calc").value = parseFloat(bor).toFixed(8);
+   
+  };
+
+function delLastSign(){
+     var del = document.getElementById("calc").value;
+    document.getElementById("calc").value = del.substr(0,del.length-1);
+}
+
+  </script>
+        <style>
+        body{background:#FFFFFF}
+
+form{
+    height: 440px;
+    width:  432px ;
+    border: 2px solid;
+    border-color: #696969;
+    margin-left: 450px;
+     margin-right: 450px;
+    margin-top: 200px;
+     margin-bottom: 200px;
+   
+   
+   
+}
+#calc{ 
+    border-color: gray;
+    border-width: 1px;
+    width:422px; 
+    height: 70px;
+    font-size: 300%;
+     margin-bottom: 8px;
+     margin-left: 4px;
+    margin-top: 10px;
+    text-align: right;
+
+     }
+input[type="button"]{
+   
+    font-size: 150%;
+   width:100px; 
+    height: 50px; 
+    margin-bottom: 8px;
+     margin-left: 4px;
+    font-weight: 300  ;
+    font-style: italic;
+    
+        
+        </style>
+    </head>
+    <body>
+         <form  method="post" id="form"  name="calculator" action="">
+             <input     type="text"; name="calc" placeholder="0" id="calc" readonly><br>
+            <span>
+                  <input id="-" style=" background: #DCDCDC"   type="button" value="+/-" onclick="changeSign(this)"> 
+                  <input  style=" background: #DCDCDC"   type="button" value="exp" onclick="exp()"> 
+                  <input style=" background: #DCDCDC"    type="button" value="log" onclick="log()"> 
+                  <input style=" background: #DCDCDC"    type="button" value="CE" onclick="delLastSign(this)"> 
+             </span>
+             
+                  
+              <span>
+                <input  name="pow"  style=" background: #DCDCDC"   type="button" value="**" onclick="setSign(this);this.disabled = true;point.disabled = false">
+                 <input   name="sqrt" style=" background: #DCDCDC"  type="button" value="√" onclick='setSqrt(this);this.disabled = true;point.disabled = false;point.disabled = true;'>
+                  <input  name="percent" style=" background: #DCDCDC"  type="button" value="%" onclick="setSign(this);this.disabled = true;point.disabled = false">
+                  <input   style=" background: #DCDCDC"  type="button" value="C"onclick="clearEntry();point.disabled = false; mul.disabled = false; plus.disabled = false; divid.disabled = false; minus.disabled = false;sqrt.disabled = false; pow.disabled = false; percent.disabled = false"><br>
+            <span  >
+                <input   style=" background: #F5F5F5"    type="button" value="7" onclick="press(this);  mul.disabled = false; plus.disabled = false; divid.disabled = false; minus.disabled = false;sqrt.disabled = false; pow.disabled = false; percent.disabled = false" >
+                <input   style=" background: #F5F5F5"   type="button" value="8" onclick="press(this); mul.disabled = false; plus.disabled = false; divid.disabled = false; minus.disabled = false;sqrt.disabled = false; pow.disabled = false; percent.disabled = false">
+                <input      style=" background: #F5F5F5"  type="button" value="9" onclick="press(this);  mul.disabled = false; plus.disabled = false; divid.disabled = false; minus.disabled = false;sqrt.disabled = false; pow.disabled = false; percent.disabled = false">
+                
+                </span>
+                <input  name="divid"  style=" background: #DCDCDC" type="button" value="/"onclick="setSign(this);this.disabled = true;point.disabled = false"><br>
+                <span  >
+                <input     style=" background: #F5F5F5" type="button" value="4" onclick="press(this); mul.disabled = false; plus.disabled = false; divid.disabled = false; minus.disabled = false;sqrt.disabled = false; pow.disabled = false; percent.disabled = false">
+                <input   style=" background: #F5F5F5"  type="button" value="5" onclick="press(this); mul.disabled = false; plus.disabled = false; divid.disabled = false; minus.disabled = false;sqrt.disabled = false; pow.disabled = false; percent.disabled = false">
+                <input     style=" background: #F5F5F5"
+                       type="button" value="6" onclick="press(this); mul.disabled = false; plus.disabled = false; divid.disabled = false; minus.disabled = false;sqrt.disabled = false; pow.disabled = false; percent.disabled = false">
+                     
+                </span>
+               
+                 <input  name = "mul"  style=" background: #DCDCDC"   type="button" value="*"onclick="setSign(this);this.disabled = true;point.disabled = false"><br>
+                 <span>
+                <input   style=" background: #F5F5F5" type="button" value="1" onclick="press(this); mul.disabled = false; plus.disabled = false; divid.disabled = false; minus.disabled = false;sqrt.disabled = false; pow.disabled = false; percent.disabled = false">
+                <input    style=" background: #F5F5F5" type="button" value="2" onclick="press(this) ; mul.disabled = false; plus.disabled = false; divid.disabled = false; minus.disabled = false;sqrt.disabled = false; pow.disabled = false; percent.disabled = false">
+                <input    style=" background: #F5F5F5" type="button" value="3" onclick="press(this); mul.disabled = false; plus.disabled = false; divid.disabled = false; minus.disabled = false;sqrt.disabled = false; pow.disabled = false; percent.disabled = false">
+                    </span>
+                     
+                    <input  name="minus" style=" background: #DCDCDC"   type="button" value="-"onclick='setSign(this);this.disabled = true;point.disabled = false'>
+                <span>
+                <input  id="zeroo"  style=" background: #F5F5F5" type="button" value="0" onclick="press(this);zero(this); mul.disabled = false; plus.disabled = false; divid.disabled = false; minus.disabled = false;sqrt.disabled = false; pow.disabled = false; percent.disabled = false">
+                    </span>
+                    <input  id="11" name="point"  style=" background: #F5F5F5"   type="button" value="." onclick='press(this);point1(this);'>
+               <span>
+                   
+            <input   style=" background: #4169E0; color: white;"  type="button" value="=" onclick="result();point.disabled = false;sqrt.disabled = false;">
+            <input  name="plus"  style=" background: #DCDCDC" type="button" value="+" onclick="setSign(this);this.disabled = true;point.disabled = false">
+                    </span>
+                </span>
+            </span>
+      
+            
+            </form>
+   
+        
+    </body>
+</html>

@@ -1,0 +1,32 @@
+import com.google.common.base.Predicate;
+import com.google.common.collect.FluentIterable;
+import com.google.common.collect.ImmutableList;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+/**
+ * Created by Bob on 4/7/2016.
+ */
+public class Limb {
+    public static void main(String[] args) {
+        List<Integer> listExample = randomize();
+        System.out.println(listExample);
+        ImmutableList<Integer> integers = FluentIterable.from(listExample).filter(new Predicate<Integer>() {
+            public boolean apply(Integer integer) {
+                return integer < 15;
+            }
+        }).toList();
+        System.out.println(integers);
+    }
+
+    public static List<Integer> randomize() {
+        List<Integer> list = new ArrayList<Integer>();
+        for (int i = 0; i < 10; i++) {
+            list.add(new Random().nextInt(30));
+        }
+        return list;
+    }
+}
+

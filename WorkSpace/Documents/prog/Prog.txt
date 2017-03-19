@@ -1,0 +1,36 @@
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.After;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class WebExample {
+    private WebDriver webDriver;
+
+    @Before
+    public void setUp() {
+        System.setProperty("webdriver.chrome.driver", "Z:/Downloads/chromedriver.exe");
+        webDriver = new ChromeDriver();
+        webDriver.manage().window().maximize();
+    }
+
+    @Test
+    public void demo() throws InterruptedException {
+        webDriver.get("https://www.youtube.com");
+        webDriver.findElement(By.xpath("//input[@name ='search_query']")).sendKeys("Pranks with clowns");
+        webDriver.findElement(By.xpath("//button[@class = 'yt-uix-button yt-uix-button-size-default yt-uix-button-default search-btn-component search-button']")).click();
+        webDriver.findElement(By.xpath("//a[@href='/watch?v=WHZPEkZCqwA' and @dir]"));
+
+        Thread.sleep(9000);
+    }
+
+
+    @After
+    public void shoutDown() {
+        if (webDriver != null) {
+            webDriver.quit();
+        }
+
+    }
+}

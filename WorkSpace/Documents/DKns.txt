@@ -1,0 +1,276 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+import static utils.Helper.*;
+
+public class Task9_2 {
+    public static void main(String[] args) {
+        int[][] array = new int[Integer.parseInt(args[0])][Integer.parseInt(args[0])];
+        fillMatrix(array);
+        System.out.println(Arrays.deepToString(moveToDown(array)));
+        System.out.println(Arrays.deepToString(moveToUp(array)));
+        System.out.println(Arrays.deepToString(moveToLeft(array)));
+        System.out.println(Arrays.deepToString(moveToRight(array)));
+        
+    }
+
+
+    private static int[][] moveToLeft(int[][] array) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("??????? ????? ?????");
+        int step = sc.nextInt();
+        if (step > array.length || step < 1) {
+            System.out.println("????? ??????????");
+
+        }
+        int buff, i, j;
+        for (int r = 0; r < step; r++) {
+            for (i = 0; i < array.length; i++) {
+                buff = array[i][0];
+                for (j = 0; j < array.length - 1; j++) {
+                    array[i][j] = array[i][j + 1];
+                }
+                array[i][j] = buff;
+            }
+        }
+        return array;
+    }
+
+    private static int[][] moveToRight(int[][] array) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("??????? ????? ??????");
+        int step = sc.nextInt();
+        if (step > array.length || step < 1) {
+            System.out.println("????? ??????????");
+
+        }
+        int buff, i, j;
+        for (int r = 0; r < step; r++) {
+            for (i = 0; i < array.length; i++) {
+                buff = array[i][array.length - 1];
+                for (j = array.length - 1; j > 0; j--) {
+                    array[i][j] = array[i][j - 1];
+                }
+                array[i][j] = buff;
+            }
+        }
+        return array;
+    }
+
+    private static int[][] moveToDown(int[][] array) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("??????? ????? ????");
+        int step = sc.nextInt();
+        if (step > array.length || step < 1) {
+            System.out.println("????? ??????????");
+
+        }
+        int buff, i, j;
+        for (int r = 0; r < step; r++) {
+            for (i = 0; i < array.length; i++) {
+                buff = array[array.length - 1][i];
+                for (j = array.length - 1; j > 0; j--) {
+                    array[j][i] = array[j - 1][i];
+                }
+                array[j][i] = buff;
+
+            }
+        }
+        return array;
+    }
+
+    private static int[][] moveToUp(int[][] array) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("??????? ????? ?????");
+        int step = sc.nextInt();
+        if (step > array.length || step < 1) {
+            System.out.println("????? ??????????");
+
+        }
+        int buff, i, j;
+        for (int r = 0; r < step; r++) {
+            for (i = 0; i < array.length; i++) {
+                buff = array[0][i];
+                for (j = 0; j < array.length - 1; j++) {
+                    array[j][i] = array[j + 1][i];
+                }
+                array[j][i] = buff;
+
+            }
+        }
+        return array;
+    }
+}
+____________________________________
+ public static void shiftArray(int[][] array, int shift) {
+
+        for (int row = 0; row < array.length; row++) {
+            int rowLength = array[row].length;
+
+            // keep shift within bounds of the array
+            shift = shift % rowLength;
+
+            // copy out elements that will "fall off"
+            int[] tmp = new int[shift];
+            for (int i = 0; i < shift; i++) {
+                tmp[i] = array[row][i];
+            }
+
+            // shift like normal
+            for (int col = 0; col < rowLength - shift; col++) {
+                array[row][col] = array[row][col + shift];
+            }
+
+            // copy back the "fallen off" elements
+            for (int i = 0; i < shift; i++) {
+                array[row][i + (rowLength - shift)] = tmp[i];
+            }
+        }
+-------------------------------------------------------------------
+import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
+
+import static java.lang.System.lineSeparator;
+
+public class Task9_3 {
+    public static void main(String[] args) {
+        int[][] array = new int[Integer.parseInt(args[0])][Integer.parseInt(args[0])];
+        fillMatrix(array);
+        counter(array);
+    }
+
+    private static void fillMatrix(int[][] array) {
+
+        System.out.println("One view way: ");
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                array[i][j] = ThreadLocalRandom.current().nextInt(1, 9);
+            }
+            System.out.println(Arrays.toString(array[i]));
+        }
+        System.out.println(lineSeparator() + "Another view way: ");
+        matrixView(array);
+    }
+
+    private static void matrixView(int[][] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                System.out.printf("%3s", arr[i][j]);
+            }
+            System.out.println(" ");
+        }
+    }
+
+    private static void counter(int[][] arr) {
+        int[] oneLineMatrix = new int[arr.length * arr.length];
+        int count = 0, increase = 0, max = 0, amountToHigh = 0, decrease = 0, min = 0, amountToLow = 0;
+        for (int[] oneLineArray : arr) {
+            for (int digits : oneLineArray) {
+                oneLineMatrix[count++] = digits;
+            }
+        }
+        for (int i = 0; i < oneLineMatrix.length - 1; i++) {
+            if (oneLineMatrix[i] < oneLineMatrix[i + 1]) {
+                increase += 1;
+                if (increase > max) {
+                    max = increase;
+                    amountToHigh = i + 1;
+                }
+            } else {
+                increase = 0;
+            }
+            if (oneLineMatrix[i] > oneLineMatrix[i + 1]) {
+                decrease += 1;
+                if (decrease > min) {
+                    min = decrease;
+                    amountToLow = i + 1;
+                }
+            } else {
+                decrease = 0;
+            }
+        }
+        System.out.println("Max sequence increase digits: ");
+        int[] maxArr = new int[max + 1];
+        System.arraycopy(oneLineMatrix, (amountToHigh - max), maxArr, 0, (max + 1));
+        System.out.println(Arrays.toString(maxArr) + " " + (max + 1));
+        System.out.println("Max sequence decrease digits:");
+        int[] minArr = new int[min + 1];
+        System.arraycopy(oneLineMatrix, (amountToLow - min), minArr, 0, (min + 1));
+        System.out.println(Arrays.toString(minArr) + " " + (min + 1));
+    }
+}
+
+_________________________________________________________________________________
+import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
+
+import static java.lang.System.lineSeparator;
+
+public class Task9_3 {
+    public static void main(String[] args) {
+        int[][] array = new int[Integer.parseInt(args[0])][Integer.parseInt(args[0])];
+        fillMatrix(array);
+        counter(array);
+    }
+
+    private static void fillMatrix(int[][] array) {
+
+        System.out.println("One view way: ");
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                array[i][j] = ThreadLocalRandom.current().nextInt(1, 9);
+            }
+            System.out.println(Arrays.toString(array[i]));
+        }
+        System.out.println(lineSeparator() + "Another view way: ");
+        matrixView(array);
+    }
+
+    private static void matrixView(int[][] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                System.out.printf("%3s", arr[i][j]);
+            }
+            System.out.println(" ");
+        }
+    }
+
+    private static void counter(int[][] arr) {
+        int[] oneLineMatrix = new int[arr.length * arr.length];
+        int count = 0, increase = 0, max = 0, amountToHigh = 0, decrease = 0, min = 0, amountToLow = 0;
+        for (int[] oneLineArray : arr) {
+            for (int digits : oneLineArray) {
+                oneLineMatrix[count++] = digits;
+            }
+        }
+        for (int i = 0; i < oneLineMatrix.length - 1; i++) {
+            if (oneLineMatrix[i] < oneLineMatrix[i + 1]) {
+                increase += 1;
+                if (increase > max) {
+                    max = increase;
+                    amountToHigh = i + 1;
+                }
+            } else {
+                increase = 0;
+            }
+            if (oneLineMatrix[i] > oneLineMatrix[i + 1]) {
+                decrease += 1;
+                if (decrease > min) {
+                    min = decrease;
+                    amountToLow = i + 1;
+                }
+            } else {
+                decrease = 0;
+            }
+        }
+        System.out.println("Max sequence increase digits: ");
+        int[] maxArr = new int[max + 1];
+        System.arraycopy(oneLineMatrix, (amountToHigh - max), maxArr, 0, (max + 1));
+        System.out.println(Arrays.toString(maxArr) + " " + (max + 1));
+        System.out.println("Max sequence decrease digits:");
+        int[] minArr = new int[min + 1];
+        System.arraycopy(oneLineMatrix, (amountToLow - min), minArr, 0, (min + 1));
+        System.out.println(Arrays.toString(minArr) + " " + (min + 1));
+    }
+}
+

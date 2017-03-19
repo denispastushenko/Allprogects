@@ -1,0 +1,39 @@
+package utilsForNinthTask;
+
+/**
+ * Created by Billy on 8/11/2016.
+ */
+public class SubTaskHelper {
+    public static void getArithmeticalMeanOfTheLine(int array[][]){
+        for (int subArray[]: array) {
+            double arithmeticalMean = 0;
+            for (int elementOfArray: subArray){
+                if (elementOfArray < 0) elementOfArray *=  (-1);
+                arithmeticalMean += elementOfArray;
+            }
+            arithmeticalMean = arithmeticalMean / subArray.length;
+            System.out.println("Arithmetical mean of the line is " + arithmeticalMean);
+        }
+    }
+    public static int[][] sortArrayLines(int array[][]){
+        for (int line[]: array) {
+            for(int i = 1; i < line.length; i++){
+                int currentElement = line[i];
+                int previousKey = i - 1;
+                while(previousKey >= 0 && line[previousKey] > currentElement){
+                    line[previousKey+1] = line[previousKey];
+                }
+                line[previousKey+1] = currentElement;
+            }
+        }
+        return array;
+    }
+  
+    public static int [][] rotateMatrix(int array[][]){
+        int newArray[][] = new int[array.length][array.length];
+        for (int i = 0; i < array.length; i++)
+            for (int j = 0; j < array.length; j++)
+                newArray[i][j] = array[j][i];
+        return newArray;
+    }
+}

@@ -1,0 +1,34 @@
+package com.devcolibri.detabase;
+
+import com.mysql.fabric.jdbc.FabricMySQLDriver;
+
+import java.sql.*;
+
+public class Test {
+    private  static final String URL = "jdbc:mysql://localhost:3306/instagramtestjdbc";
+    private  static final String USER = "root";
+    private  static final String PASSWORD = "root";
+    public static void main(String[] args) {
+        try {
+            Driver driver = new FabricMySQLDriver();
+            DriverManager.registerDriver(driver);
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        try(Connection connection = DriverManager.getConnection(URL,USER,PASSWORD); Statement statement = connection.createStatement()) {
+            int i =0;
+            while (i<10) {
+                if (i == 3) break;
+                statement.addBatch("insert into photos (name,photos)values('Vikus1','Screenshot_1.png');");
+                statement.addBatch("insert into photos (name,photos)values('Vikus2','Screenshot_1.png');");
+                statement.addBatch("insert into photos (name,photos)values('Vikus13','Screenshot_1.png');");
+                statement.executeBatch();
+                i++;
+            }
+//statement.executeUpdate("DELETE FROM photos");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
