@@ -49,6 +49,11 @@ public class ChooseItem extends Page {
         amountCartFirst.add(Integer.parseInt(getItemsAmount().getText()));
         waitForElementForWebElem(webElement, 5);
         findElementFIeld.sendKeys(item);
+        /*try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
         searchButton.click();
         return new ChooseItemFromList(getDriver());
     }

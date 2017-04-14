@@ -44,11 +44,8 @@ public class CheckCart extends Page {
     }
 
     public void getElements() {
-        checkCartItems.stream()
-                .map(WebElement::getText)
-                .filter(title -> title.contains("Apple iPhone 7") || title.contains("Samsung Galaxy S7"))
-                .forEach(item -> resultSet.add(item));
-        System.out.println("Just Added Cart Items:");
+
+        System.out.println("Just Added Cart Items, amount of them: ");
         System.out.println(resultSet);
     }
 

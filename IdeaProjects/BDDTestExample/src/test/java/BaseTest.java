@@ -1,10 +1,9 @@
 import listeners.TestLogListener;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import pages.*;
-
-import static utils.WebdriverUtils.createDriver;
 
 @Listeners(TestLogListener.class)
 public class BaseTest {
@@ -18,13 +17,14 @@ public class BaseTest {
     protected CheckCart checkCart;
 
     @BeforeMethod
-    public void setUp() throws Exception {
-        startPage = new StartPage(createDriver());
+    public void setUp()  {
+        System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\remoteDriverUtils\\chromedriver.exe");
+        startPage = new StartPage(new ChromeDriver());
         Page.getDriver().manage().window().maximize();
     }
 
     @AfterMethod
-    public void tearDown() throws Exception {
+    public void tearDown()  {
         if (Page.getDriver() != null) {
             Page.getDriver().quit();
         }

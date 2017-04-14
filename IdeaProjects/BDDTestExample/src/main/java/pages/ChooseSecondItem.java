@@ -8,7 +8,7 @@ public class ChooseSecondItem extends Page {
         super(driver);
     }
  ChooseItem chooseItem = new ChooseItem(getDriver());
-    public ChooseSecondItemFromList chooseSecondItemFrom(String item2) {
+    public ChooseSecondItemFromList chooseSecondItemFrom(String item2)  {
         chooseItem.getFindElementFIeld().sendKeys(item2);
         chooseItem.getSearchButton().click();
         return new ChooseSecondItemFromList(getDriver());

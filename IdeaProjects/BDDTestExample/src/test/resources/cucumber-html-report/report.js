@@ -13,7 +13,7 @@ formatter.feature({
   ]
 });
 formatter.before({
-  "duration": 8386611711,
+  "duration": 4628530751,
   "status": "passed"
 });
 formatter.scenario({
@@ -58,7 +58,7 @@ formatter.match({
   "location": "BDDScenarios.open_chrome_and_get()"
 });
 formatter.result({
-  "duration": 6575885638,
+  "duration": 2998874681,
   "status": "passed"
 });
 formatter.match({
@@ -83,7 +83,7 @@ formatter.match({
   "location": "BDDScenarios.ligIn(String,String,String,String)"
 });
 formatter.result({
-  "duration": 9315108366,
+  "duration": 6333825571,
   "status": "passed"
 });
 formatter.match({
@@ -100,21 +100,21 @@ formatter.match({
   "location": "BDDScenarios.succLogin(String,String)"
 });
 formatter.result({
-  "duration": 2643880183,
+  "duration": 175045942,
   "status": "passed"
 });
 formatter.match({
   "location": "BDDScenarios.findFirstItem()"
 });
 formatter.result({
-  "duration": 26476805658,
+  "duration": 15739404246,
   "status": "passed"
 });
 formatter.match({
   "location": "BDDScenarios.chooseAnotherItem()"
 });
 formatter.result({
-  "duration": 28717527351,
+  "duration": 15584511803,
   "status": "passed"
 });
 formatter.match({
@@ -135,15 +135,15 @@ formatter.match({
   "location": "BDDScenarios.checkCart(Integer,String,String)"
 });
 formatter.result({
-  "duration": 5099560060,
+  "duration": 272232058,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1718217251,
+  "duration": 967216381,
   "status": "passed"
 });
 formatter.before({
-  "duration": 3927892850,
+  "duration": 3369798825,
   "status": "passed"
 });
 formatter.scenario({
@@ -173,7 +173,7 @@ formatter.match({
   "location": "BDDScenarios.open_chrome_and_get()"
 });
 formatter.result({
-  "duration": 7282065550,
+  "duration": 2929775346,
   "status": "passed"
 });
 formatter.match({
@@ -198,7 +198,7 @@ formatter.match({
   "location": "BDDScenarios.typeInvalidCredentional(String,String,String,String)"
 });
 formatter.result({
-  "duration": 7612549005,
+  "duration": 2956468876,
   "status": "passed"
 });
 formatter.match({
@@ -211,11 +211,11 @@ formatter.match({
   "location": "BDDScenarios.invalidLogin(String)"
 });
 formatter.result({
-  "duration": 605887190,
+  "duration": 94949029,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1547598006,
+  "duration": 855365084,
   "status": "passed"
 });
 });

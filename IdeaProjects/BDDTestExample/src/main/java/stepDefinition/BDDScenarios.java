@@ -7,8 +7,11 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import utils.PropertyConfiguration;
 
+import java.awt.*;
+
 import static pages.CheckCart.checkIsElementsPresent;
 import static pages.CheckCart.isElementPresent;
+import static pages.ChooseItemFromList.clearSearchField;
 import static pages.Page.getDriver;
 import static utils.LanguageCheckClass.setMainGreeting;
 
@@ -32,14 +35,15 @@ public class BDDScenarios extends BDDScenariosHelper {
     }
 
     @When("^Type first item choose from list and add it to cart$")
-    public void findFirstItem() {
-        chooseItemFromList = chooseItem.chooseItemFrom("Apple iPhone 7 Unlocked Phone", chooseItem.getFindElementFIeld());
+    public void findFirstItem()  {
+        chooseItemFromList = chooseItem.chooseItemFrom("Spring framework", chooseItem.getFindElementFIeld());
         chooseSecondItem = chooseItemFromList.addtoCartItem();
+
     }
 
     @When("^Type second item choose from list and add it to cart$")
-    public void chooseAnotherItem() {
-        chooseSecondItemFromList = chooseSecondItem.chooseSecondItemFrom("samsung galaxy s7");
+    public void chooseAnotherItem()  {
+        chooseSecondItemFromList = chooseSecondItem.chooseSecondItemFrom("Cucumber bdd");
         checkCart = chooseSecondItemFromList.addtoCartAnotherItem();
     }
 

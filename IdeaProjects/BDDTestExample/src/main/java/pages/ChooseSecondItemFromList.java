@@ -1,9 +1,12 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +30,8 @@ public class ChooseSecondItemFromList extends Page {
     }
 
     public CheckCart addtoCartAnotherItem() {
-        waitForElementForWebElem(chooseSecondItem.get(1), 5);
-        chooseSecondItem.get(1).click();
+        waitForElementForWebElem(chooseSecondItem.get(2), 5);
+        chooseSecondItem.get(2).click();
         ChooseItemFromList addToCart = new ChooseItemFromList(getDriver());
         addToCart.getAddToCartItem().click();
         waitForElementForWebElem(goToCart, 5);
